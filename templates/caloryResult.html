@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Style the page header */
+        h2 {
+            text-align: center;
+            color: #795548; /* Brown color */
+        }
+
+        /* Style the calorie count */
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333; /* Dark gray color */
+            margin-top: 20px;
+        }
+
+        /* Style the back link */
+        a {
+            display: block;
+            text-align: center;
+            color: #795548; /* Brown color */
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        /* On hover, change the color of the back link */
+        a:hover {
+            color: #8d6e63; /* Lighter brown color */
+        }
+        /* Style the navigation bar */
+        .navbar {
+            overflow: hidden;
+            background-color: #795548; /* Brown color */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+        }
+
+        /* Navigation links */
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* On hover, the background color of the buttons will change */
+        .navbar a:hover {
+            background-color: #8d6e63; /* Lighter brown color */
+        }
+        .bs {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 20px !important;
+ border-radius: 5px !important;
+ padding: 20px !important;
+}
+
+    </style>
+</head>
+<body>
+  <!-- Navigation bar -->
+<div class="navbar">
+    <!-- Button 1 - Link to external site 1 -->
+        <a href="/">Home</a>
+    <a href="/form">Diet Recommendation</a>
+    <!-- Button 2 - Link to external site 2 -->
+    <a href="/calories">Calory Check</a>
+</div>
+
+    <h2>Search Result</h2>
+    <p class='bs'>The calorie count of {{ food }} is {{ calories }} calories.</p>
+    <a href="/calories" class='btn-secondary'>Back to Search</a>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Recommendation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #795548;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #795548;
+        }
+        input[type="text"],
+        select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #795548;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+        }
+        input[type="submit"]:hover {
+            background-color: #5d4037;
+        }
+        /* Style the navigation bar */
+        .navbar {
+            overflow: hidden;
+            background-color: #795548; /* Brown color */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+        }
+
+        /* Navigation links */
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* On hover, the background color of the buttons will change */
+        .navbar a:hover {
+            background-color: #8d6e63; /* Lighter brown color */
+        }
+        /* Additional styles for the loading message */
+        .loading {
+            text-align: center;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation bar -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/form">Diet Recommendation</a>
+    <a href="/calories">Calory Check</a>
+</div>
+
+<div class="container">
+    <h2>Enter Your Information</h2>
+    <form action="/recommend" method="post" id="recommendation-form">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+        </select>
+        
+        <label for="weight">Weight (kg):</label>
+        <input type="text" id="weight" name="weight" required>
+        
+        <label for="height">Height (cm):</label>
+        <input type="text" id="height" name="height" required>
+
+        <label for="intentional_exercise">How many minutes of intentional exercise do you do each day?</label>
+        <select name="intentional_exercise" id="intentional_exercise">
+            <option value="a">Less than 30 minutes</option>
+            <option value="b">At least 30 minutes</option>
+            <option value="c">At least 1 hour and 45 minutes</option>
+            <option value="d">At least 4 hours and 15 minutes</option>
+        </select><br><br>
+
+        <label for="moderate_vigorous_activity">Do you engage in any moderate or vigorous activities apart from intentional exercise?</label>
+        <select name="moderate_vigorous_activity" id="moderate_vigorous_activity">
+            <option value="a">No, I don't engage in moderate or vigorous activities.</option>
+            <option value="b">Yes, I engage in moderate activities occasionally.</option>
+            <option value="c">Yes, I engage in vigorous activities occasionally.</option>
+            <option value="d">Yes, I engage in both moderate and vigorous activities regularly.</option>
+        </select><br><br>
+
+        <label for="time_on_feet">How much time do you spend on your feet during the day?</label>
+        <select name="time_on_feet" id="time_on_feet">
+            <option value="a">I spend most of my day sitting.</option>
+            <option value="b">I spend a large part of my day on my feet.</option>
+            <option value="c">I spend some part of my day doing something physical.</option>
+            <option value="d">I spend most of my day doing something physical.</option>
+        </select><br><br>
+        
+        <label for="goal">Weight Management Goal:</label>
+        <select id="goal" name="goal">
+            <option value="weight_loss">Weight Loss</option>
+            <option value="weight_gain">Weight Gain</option>
+            <option value="maintain">Maintain Weight</option>
+        </select>
+        
+        <label for="desired_weight">Desired Weight (kg):</label>
+        <input type="text" id="desired_weight" name="desired_weight" required>
+
+        <label for="time_interval_months">time interval(months):</label>
+        <input type="text" id="time_interval_months" name="time_interval_months" required>
+
+        <label for="meal_choice">Select Meals:</label>
+        <select id="meal_choice" name="meal_choice">
+            <option value="1">Breakfast</option>
+            <option value="2">Breakfast and Lunch</option>
+            <option value="3">Breakfast, Lunch, and Dinner</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#recommendation-form').submit(function(){
+            // Show loading message when form is submitted
+            $('#loading-message').show();
+            // Disable the submit button
+            $('#recommendation-form input[type="submit"]').prop('disabled', true);
+            // set cursor disabled to true
+            $('#recommendation-form input[type="submit"]').css('cursor', 'not-allowed');
+            // set button colour to gray
+            $('#recommendation-form input[type="submit"]').css('background-color', '#795548');
+            // set button text to "Submitting..."
+            $('#recommendation-form input[type="submit"]').val('Submitting...');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Calorie Search</title>
+    <style>
+        /* Style the navigation bar */
+        .navbar {
+            overflow: hidden;
+            background-color: #795548; /* Brown color */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+        }
+
+        /* Navigation links */
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* On hover, the background color of the buttons will change */
+        .navbar a:hover {
+            background-color: #8d6e63; /* Lighter brown color */
+        }
+        /* Style the page header */
+        h1 {
+            text-align: center;
+            color: #795548; /* Brown color */
+        }
+
+        /* Style the form */
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style the input field and button */
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #795548; /* Brown color */
+            color: #fff; /* White color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #8d6e63; /* Lighter brown color */
+        }
+.bs {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 20px !important;
+ border-radius: 5px !important;
+ padding: 20px !important;
+}
+
+    </style>
+    <link rel='stylesheet' href='./style.css'>
+</head>
+<body>
+  <!-- Navigation bar -->
+<div class="navbar">
+    <!-- Button 1 - Link to external site 1 -->
+        <a href="/">Home</a>
+    <a href="/form">Diet Recommendation</a>
+    <!-- Button 2 - Link to external site 2 -->
+    <a href="/calories">Calory Check</a>
+</div>
+
+
+    <!-- Page header -->
+    <h1>Food Calorie Search</h1>
+
+    <!-- Search form -->
+    <form action="/search" method="post" class='bs'>
+        <label for="food">Enter a food item:</label>
+        <input type="text" id="food" name="food" required placeholder='orange'>
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>
